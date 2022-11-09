@@ -1,10 +1,9 @@
 import { Request, Response } from "express";
-import { task } from "../protocols.js";
-import { getAllTasksForEveryone } from "../services/task.service.js";
+import tasksService from "../services/task.service.js";
 
 export async function getTasks(req: Request, res: Response) {
   try {
-    const result = await getAllTasksForEveryone();
+    const result = await tasksService.getAllTasksForEveryone();
     res.status(200).send(result);
   } catch (error) {
     return res.sendStatus(500);
