@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
-import { task } from "../protocols/task";
-import * as taskRepositories from "../repositories/task.repository.js";
+import { task } from "../protocols.js";
+import { getAllTasksForEveryone } from "../services/task.service.js";
 
 export async function getTasks(req: Request, res: Response) {
   try {
-    const result = await taskRepositories.getTasks();
-    res.status(200).send(result.rows);
+    const result = await getAllTasksForEveryone();
+    res.status(200).send(result);
   } catch (error) {
     return res.sendStatus(500);
   }

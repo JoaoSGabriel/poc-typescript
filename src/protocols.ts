@@ -1,5 +1,5 @@
 export type task = {
-  id: number;
+  id?: number;
   description: string;
   responsible: number;
   completed: boolean;

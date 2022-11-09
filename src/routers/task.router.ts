@@ -5,7 +5,7 @@ import {
   updateTask,
 } from "../controllers/tasks.controller.js";
 
-const task = Router();
+const task: Router = Router();
 
 task.get("/tasks", getTasks);
 task.put("/tasks", updateTask);
