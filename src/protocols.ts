@@ -3,5 +3,5 @@ export type task = {
   description?: string;
   responsible?: number;
   completed?: boolean;
-  qtTasks?: number;
+  taskToDo?: number;
 };

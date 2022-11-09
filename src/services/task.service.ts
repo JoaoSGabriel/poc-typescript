@@ -15,7 +15,7 @@ async function getTasksByUser(userId: number): Promise<task[]> {
   return result.rows;
 }
 
-async function resetTasks() {
+async function resetTasks(): Promise<void> {
   return await taskRepositories.markAllAsIncomplete();
 }
 
