@@ -10,8 +10,11 @@ export async function getTasks(req: Request, res: Response) {
   }
 }
 
-export function updateTask(req: Request, res: Response) {
+export async function updateTask(req: Request, res: Response) {
+  const { taskId } = req.query;
   try {
+    await tasksService.putTaskAsDone(Number(taskId));
+    res.sendStatus(200);
   } catch (error) {
     return res.sendStatus(500);
   }
@@ -24,6 +27,15 @@ export async function countTasks(req: Request, res: Response) {
     res.status(200).send(result);
   } catch (error) {
     console.log(error.message);
+    return res.sendStatus(500);
+  }
+}
+
+export async function resetToDefault(req: Request, res: Response) {
+  try {
+    await tasksService.resetTasks();
+    res.sendStatus(200);
+  } catch (error) {
     return res.sendStatus(500);
   }
 }
