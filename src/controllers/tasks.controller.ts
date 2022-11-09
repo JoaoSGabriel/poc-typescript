@@ -17,9 +17,13 @@ export function updateTask(req: Request, res: Response) {
   }
 }
 
-export function countTasks(req: Request, res: Response) {
+export async function countTasks(req: Request, res: Response) {
+  const userId = req.query?.userId;
   try {
+    const result = await tasksService.getTasksByUser(Number(userId));
+    res.status(200).send(result);
   } catch (error) {
+    console.log(error.message);
     return res.sendStatus(500);
   }
 }
