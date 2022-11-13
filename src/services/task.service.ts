@@ -1,21 +1,32 @@
 import { task } from "../protocols.js";
 import * as taskRepositories from "../repositories/task.repository.js";
 
-async function getAllTasksForEveryone(): Promise<task[]> {
+async function getAllTasksForEveryone() {
   const result = await taskRepositories.getTasks();
-  return result.rows;
+  return result;
 }
 
-async function putTaskAsDone(taskId: number): Promise<void> {
+async function putTaskAsDone(taskId: number) {
   return await taskRepositories.checkTaskAsDone(taskId);
 }
 
-async function getTasksByUser(userId: number): Promise<task[]> {
-  const result = await taskRepositories.getMyTasks(userId);
-  return result.rows;
+async function getTasksByUser(userId: number) {
+  const result = await taskRepositories.getMyIncompleteTasks(userId);
+  return result;
 }
 
-async function resetTasks(): Promise<void> {
+async function createNewTask(
+  description: string,
+  userId: number
+): Promise<void> {
+  return await taskRepositories.newTask(description, userId);
+}
+
+async function deleteOneTask(taskId: number) {
+  return await taskRepositories.deleteThisTask(taskId);
+}
+
+async function resetTasks() {
   return await taskRepositories.markAllAsIncomplete();
 }
 
@@ -24,6 +35,8 @@ const tasksService = {
   getTasksByUser,
   putTaskAsDone,
   resetTasks,
+  createNewTask,
+  deleteOneTask,
 };
 
 export default tasksService;

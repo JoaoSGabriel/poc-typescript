@@ -2,6 +2,7 @@ import { Router } from "express";
 import {
   countTasks,
   createTask,
+  deleteTask,
   getTasks,
   resetToDefault,
   updateTask,
@@ -14,5 +15,6 @@ task.put("/tasks", updateTask);
 task.get("/tasksCount", countTasks);
 task.post("/tasks", resetToDefault);
 task.post("/taskCreate", createTask);
+task.delete("/tasks", deleteTask);
 
 export { task };

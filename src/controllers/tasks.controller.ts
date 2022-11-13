@@ -31,8 +31,21 @@ export async function countTasks(req: Request, res: Response) {
 }
 
 export async function createTask(req: Request, res: Response) {
+  const { text, userId } = req.body;
   try {
+    await tasksService.createNewTask(text, Number(userId));
     res.sendStatus(201);
+  } catch (error) {
+    return res.sendStatus(500);
+  }
+}
+
+export async function deleteTask(req: Request, res: Response) {
+  const { taskId } = req.body;
+
+  try {
+    await tasksService.deleteOneTask(Number(taskId));
+    res.sendStatus(200);
   } catch (error) {
     return res.sendStatus(500);
   }
