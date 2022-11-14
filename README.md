@@ -8,6 +8,13 @@ Republic Tasks is an app maked to organize your tasks republic, with you colegue
 You can create new tasks and keep up with you how many tasks each person need to do. 
 Every week, your group can reset the tasks to "incomplete" state and, restart all the loop.
 
+# Technologies
+
+- Typescript / Express
+- dotenv
+- joi
+- pg
+
 # How to start
 1. **Clone** this repository
 2. **install** all dependencies
